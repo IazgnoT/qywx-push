@@ -81,12 +81,12 @@ router.post('/api/configure', async (req, res) => {
 // 4. POST /api/notify/:code 发送通知
 router.post('/api/notify/:code', async (req, res) => {
     const { code } = req.params;
-    const { title, content } = req.body;
+    const { title, content, localMsgType } = req.body;
     if (!content) {
         return res.status(400).json({ error: '消息内容不能为空' });
     }
     try {
-        const result = await notifier.sendNotification(code, title, content, msgType);
+        const result = await notifier.sendNotification(code, title, content, localMsgType);
         res.json({ message: '发送成功', response: result });
     } catch (err) {
         if (err.message && err.message.includes('未找到配置')) {

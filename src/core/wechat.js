@@ -51,14 +51,14 @@ class WeChatService {
     }
 
     // 发送应用消息
-    async sendMessage(accessToken, agentid, touser, msgType, message) {
+    async sendMessage(accessToken, agentid, touser, localMsgType, message) {
         try {
             // 构造消息体
             const messageBody = {
                 touser: Array.isArray(touser) ? touser.join('|') : touser,
-                msgtype: msgType,
+                msgtype: localMsgType,
                 agentid: agentid,
-                [msgType]: {
+                [localMsgType]: {
                     content: message
                 }
             };
