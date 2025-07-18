@@ -192,7 +192,7 @@ async function createConfiguration(config) {
  * @param {string} content - 消息内容
  * @returns {Promise<Object>} - 企业微信API返回结果
  */
-async function sendNotification(code, title, content) {
+async function sendNotification(code, title, content, msgType) {
     // 查询配置
     const config = await db.getConfigurationByCode(code);
     if (!config) {
@@ -209,6 +209,7 @@ async function sendNotification(code, title, content) {
         accessToken,
         config.agentid,
         config.touser,
+        msgType,
         message
     );
     return result;

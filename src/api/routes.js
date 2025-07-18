@@ -86,7 +86,7 @@ router.post('/api/notify/:code', async (req, res) => {
         return res.status(400).json({ error: '消息内容不能为空' });
     }
     try {
-        const result = await notifier.sendNotification(code, title, content);
+        const result = await notifier.sendNotification(code, title, content, msgType);
         res.json({ message: '发送成功', response: result });
     } catch (err) {
         if (err.message && err.message.includes('未找到配置')) {
