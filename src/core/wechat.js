@@ -68,6 +68,7 @@ class WeChatService {
                 `${this.apiBase}/cgi-bin/message/send?access_token=${accessToken}`,
                 messageBody
             );
+            console.log('messageBody:', messageBody);
 
             const { data } = response;
             
